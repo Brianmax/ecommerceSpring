@@ -36,19 +36,13 @@ public class ComprasController {
 	private OperacionesService operacionesService;
 
 	@GetMapping("listar_Ctrl_Reposicion")
-	public ModelAndView listarCtrlReposicion() {
-		ModelAndView mav = new ModelAndView("listarCtrlReposiciones");
-		List<ProductoEntity> paquete = productosService.listar();
-		mav.addObject("paqueteP",paquete);
-		return mav;
+	public List<ProductoEntity> listarCtrlReposicion() {
+		return productosService.listar();
 	}
 	
-	@GetMapping("reponer_producto")
-	public ModelAndView obtenerProducto(@RequestParam(name = "idpro")int idprod) {
-		ModelAndView mav=new ModelAndView("reponerProducto");
-		mav.addObject("productoP",productosService.buscarProducto(idprod));
-		return mav;
-	
+	@GetMapping("obtener_producto")
+	public ProductoEntity obtenerProducto(@RequestParam(name = "idpro")int idprod) {
+		return productosService.buscarProducto(idprod);
 	}
 	
 	@PostMapping("reponerproducto/actualizar")

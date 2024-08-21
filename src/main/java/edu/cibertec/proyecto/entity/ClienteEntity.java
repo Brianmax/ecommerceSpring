@@ -1,10 +1,6 @@
 package edu.cibertec.proyecto.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +18,7 @@ public class ClienteEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idcliente;
+	@NotEmpty
 	private String rucdni;
 	@NotEmpty
 	private String razonsocial;

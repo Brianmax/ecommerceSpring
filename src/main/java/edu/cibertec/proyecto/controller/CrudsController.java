@@ -43,7 +43,7 @@ public class CrudsController {
 	@GetMapping("crud_Clientes")
 	public ModelAndView crudListClientes(Pageable pageable, @RequestParam(name="page",defaultValue = "0")int page){
 		ModelAndView mav = new ModelAndView("crudClientes");
-		mav.addObject("paqueteC",clientesService.listar(pageable));
+		// mav.addObject("paqueteC",clientesService.listar(pageable));
 		mav.addObject("page", page);
 		return mav;
 	}
@@ -68,8 +68,8 @@ public class CrudsController {
 	public ModelAndView crudEliminarCliente(@RequestParam(name="idcli")int idcli, Pageable pageable){
 		ModelAndView mav=new ModelAndView("crudClientes");
 		ClienteEntity c = clientesService.buscarCliente(idcli);
-		clientesService.eliminarCliente(c);
-		mav.addObject("paqueteC",clientesService.listar(pageable));
+		 //clientesService.eliminarCliente(c);
+		// mav.addObject("paqueteC",clientesService.listar(pageable));
 		return mav;
 	}
 	

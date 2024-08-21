@@ -6,11 +6,11 @@ import org.springframework.data.domain.Pageable;
 
 public interface ClientesService {
 	
-	public Page<ClienteEntity> listar(Pageable pageable);
+	public Page<ClienteEntity> listar(int page, int size);
 	public ClienteEntity buscarCliente(int codigo);
-	public void eliminarCliente(ClienteEntity obj);
-	public void modificarCliente(ClienteEntity obj);
-	public void crearCliente(ClienteEntity obj);
+	public boolean eliminarCliente(int id);
+	public boolean modificarCliente(ClienteEntity obj);
+	public ClienteEntity crearCliente(ClienteEntity obj);
 	
 	
 }
