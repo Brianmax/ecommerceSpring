@@ -50,8 +50,8 @@ public class ProductosServiceImpl implements ProductosService {
 		cap.setDescripcion(obj.getDescripcion());
 		cap.setPrecio(obj.getPrecio());
 		cap.setProveedor(obj.getProveedor());
-		cap.setStock_max(obj.getStock_max());
-		cap.setStock_min(obj.getStock_min());
+		cap.setStockMax(obj.getStockMax());
+		cap.setStockMin(obj.getStockMin());
 		cap.setTipo(obj.getTipo());
 		sp.save(cap);
 	}
@@ -70,7 +70,6 @@ public class ProductosServiceImpl implements ProductosService {
 		JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(listadoP);
 		Map<String,Object> parametros = new HashMap<>();
 		JasperPrint print = JasperFillManager.fillReport(report, parametros,ds);
-		
 		return print;
 		
 	}

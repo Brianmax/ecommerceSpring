@@ -3,149 +3,53 @@ package edu.cibertec.proyecto.entity;
 import java.util.List;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_productos")
+
 public class ProductoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "producto_id")
 	private int idprod;
 	@ManyToOne
-	@JoinColumn(name = "tipo")
+	@JoinColumn(name = "tipo_id")
 	private TipoProductoEntity tipo;
 	
 	private String descripcion;
-	
-	@Column(name="precio")
 	private Double precio;
-	private int stock_min;
-	private int stock_max;
+	@Column(name = "stock_min")
+	private int stockMin;
+	@Column(name = "stock_max")
+	private int stockMax;
 	@ManyToOne
-	@JoinColumn(name = "proveedor")
+	@JoinColumn(name = "proveedor_id")
 	private ProveedorEntity proveedor;
-	private int estado;
+	private boolean estado;
 	
 	@OneToMany(mappedBy = "producto")
-	List<OperacionEntity>lstCantidad;
+	List<OperacionEntity> productos;
 
-
-
-	public ProductoEntity() {
-
-	}
-
-
-	public ProductoEntity(int idprod, TipoProductoEntity tipo, String descripcion, Double precio, int stock_min,
-						  int stock_max, ProveedorEntity proveedor, int estado, List<OperacionEntity> lstCantidad) {
-		this.idprod = idprod;
-		this.tipo = tipo;
-		this.descripcion = descripcion;
-		this.precio = precio;
-		this.stock_min = stock_min;
-		this.stock_max = stock_max;
-		this.proveedor = proveedor;
-		this.estado = estado;
-		this.lstCantidad = lstCantidad;
-	}
-
-	
 	public int getStock() {
-		return lstCantidad.stream().mapToInt(o -> o.getCantidad()).sum();
+		return productos.stream().mapToInt(o -> o.getCantidad()).sum();
 	}
 	
 	public boolean getReponer() {
 		int stk = getStock();
 		boolean men = false;
-		if (stk < getStock_min()) {
+		if (stk < getStockMin()) {
 			men = true;
 		}else {
 			men = false;
 		}
 		return men;
 	}
-
-	public int getIdprod() {
-		return idprod;
-	}
-
-	public void setIdprod(int idprod) {
-		this.idprod = idprod;
-	}
-
-	public TipoProductoEntity getTipo() {
-		return tipo;
-	}
-
-	public String getNameTipoproducto() {
-		return getTipo().getDescripcion();
-	}
-
-	public void setTipo(TipoProductoEntity tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Double getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(Double precio) {
-		this.precio = precio;
-	}
-
-	public int getStock_min() {
-		return stock_min;
-	}
-
-	public void setStock_min(int stock_min) {
-		this.stock_min = stock_min;
-	}
-
-	public int getStock_max() {
-		return stock_max;
-	}
-
-	public void setStock_max(int stock_max) {
-		this.stock_max = stock_max;
-	}
-
-	public ProveedorEntity getProveedor() {
-		return proveedor;
-	}
-
-	public String getNameproveedor() {
-		return proveedor.getRazonsocial();
-	}
-	public void setProveedor(ProveedorEntity proveedor) {
-		this.proveedor = proveedor;
-	}
-
-	public int getEstado() {
-		return estado;
-	}
-
-	public void setEstado(int estado) {
-		this.estado = estado;
-	}
-
-	public List<OperacionEntity> getLstCantidad() {
-		return lstCantidad;
-	}
-
-	public void setLstCantidad(List<OperacionEntity> lstCantidad) {
-		this.lstCantidad = lstCantidad;
-	}
-
-
-
-
-
 }

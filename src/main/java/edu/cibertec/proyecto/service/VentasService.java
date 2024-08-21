@@ -4,6 +4,6 @@ import edu.cibertec.proyecto.entity.VentaEntity;
 
 public interface VentasService {
 	
-	public void crearVemtas(VentaEntity obj);
+	public VentaEntity crearVemtas(VentaEntity obj);
 	
 }

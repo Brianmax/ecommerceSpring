@@ -48,7 +48,7 @@ public class ComprasController {
 	@PostMapping("reponerproducto/actualizar")
 	public String reponerProducto(@ModelAttribute(name = "producto") ProductoEntity obj ) {
 	    Date date = new Date(System.currentTimeMillis());
-		OperacionEntity opr = new OperacionEntity("REPO",1,obj,obj.getStock_min(),obj.getPrecio(),date,1);
+		OperacionEntity opr = new OperacionEntity("REPO",1,obj,obj.getStockMin(),obj.getPrecio(),date,1);
 		operacionesService.crearOperaciones(opr);
 		return "redirect:/listar_Ctrl_Reposicion";
 	}

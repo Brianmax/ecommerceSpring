@@ -12,10 +12,8 @@ public class VentasServiceImpl implements VentasService {
 	VentasRepository rv;
 	
 	@Override
-	public void crearVemtas(VentaEntity obj) {
-		
-		rv.save(obj);
-		
+	public VentaEntity crearVemtas(VentaEntity obj) {
+		return rv.save(obj);
 	}
 
 }

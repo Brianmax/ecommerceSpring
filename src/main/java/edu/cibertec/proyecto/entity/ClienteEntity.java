@@ -12,11 +12,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="tb_clientes")
+@Table(name="clientes")
 public class ClienteEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cliente_id")
 	private int idcliente;
 	@NotEmpty
 	private String rucdni;
@@ -24,6 +25,6 @@ public class ClienteEntity {
 	private String razonsocial;
 	private String direccion;
 	private String celular;
-	private int estado;
+	private boolean estado;
 
 }

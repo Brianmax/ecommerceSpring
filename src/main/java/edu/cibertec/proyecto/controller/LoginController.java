@@ -29,7 +29,7 @@ public class LoginController {
 	@PostMapping("/ejecutar_autentificacion")
 	public String ejecutarAutentificacion(@ModelAttribute (name = "pqteusers") UsuarioEntity obj, BindingResult result, RedirectAttributes attribute) {
 	
-		boolean val = usuariosService.validarLogin(obj.getUsuario(),obj.getClave());
+		boolean val = usuariosService.validarLogin(obj.getUsuario(),obj.getPassword());
 		if (val==false) {
 			attribute.addFlashAttribute("warning","Datos de usuario incorrectos.");
 			return "redirect:/autentificar";

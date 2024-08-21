@@ -2,6 +2,7 @@ package edu.cibertec.proyecto.entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,5 +22,4 @@ public class ProductosModelo {
 	private int cantidad;
 	@NotNull
 	private Double costo;
-
 }

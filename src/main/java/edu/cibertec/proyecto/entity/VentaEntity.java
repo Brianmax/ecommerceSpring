@@ -11,18 +11,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="tb_ventas")
+@Table(name="ventas")
 public class VentaEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ventas;
+	@Column(name = "cliente_id")
+	private int idVentas;
 	@ManyToOne
-	@JoinColumn(name = "cliente")
+	@JoinColumn(name = "cliente_id")
 	private ClienteEntity cliente;
 	private Double precio;
 	private Date fecha;
-	private int estado;
-
-
+	private boolean estado;
 }
