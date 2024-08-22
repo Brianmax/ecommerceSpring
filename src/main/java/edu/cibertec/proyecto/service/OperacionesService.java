@@ -6,7 +6,7 @@ import edu.cibertec.proyecto.entity.OperacionEntity;
 
 public interface OperacionesService {
 
-	public void crearOperaciones(OperacionEntity obj);
-	public void crearMultiplesOperaciones(List<OperacionEntity> obj);
+	public OperacionEntity crearOperaciones(OperacionEntity obj);
+	public List<OperacionEntity> crearMultiplesOperaciones(List<OperacionEntity> obj);
 
 }

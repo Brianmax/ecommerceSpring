@@ -9,10 +9,10 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 public interface ProductosService {
 
-	public List<ProductoEntity> listar();
-	public ProductoEntity buscarProducto(int codigo);
-	public void eliminarProducto(ProductoEntity obj);
-	public void modificarProducto(ProductoEntity obj);
-	public void crearProducto(ProductoEntity obj);
-	public JasperPrint exportReport(String report)throws FileNotFoundException, JRException;
+	List<ProductoEntity> listar(int page, int size);
+	ProductoEntity buscarProducto(int idProducto);
+	boolean eliminarProducto(int idProduct);
+	ProductoEntity modificarProducto(ProductoEntity obj, int id);
+	ProductoEntity crearProducto(ProductoEntity obj);
+	JasperPrint exportReport(String report)throws FileNotFoundException, JRException;
 }

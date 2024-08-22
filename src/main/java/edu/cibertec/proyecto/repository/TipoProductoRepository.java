@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import edu.cibertec.proyecto.entity.TipoProductoEntity;
 @Repository
-public interface TipoProductosRepository extends JpaRepository<TipoProductoEntity, Integer> {
-
+public interface TipoProductoRepository extends JpaRepository<TipoProductoEntity, Integer> {
+    boolean existsByNombre(String nombre);
 }

@@ -28,7 +28,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 @Controller
 @RequestMapping("/")
 public class ComprasController {
-	List<ProductosModelo> pastilla = new ArrayList<ProductosModelo>();
+/*	List<ProductosModelo> pastilla = new ArrayList<ProductosModelo>();
 	
 	@Autowired
 	private ProductosService productosService;
@@ -107,6 +107,6 @@ public class ComprasController {
 		outputStream.close();
 	}
 	
-	
+	*/
 	
 }

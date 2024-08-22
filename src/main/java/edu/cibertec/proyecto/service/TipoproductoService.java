@@ -4,8 +4,7 @@ import java.util.List;
 
 import edu.cibertec.proyecto.entity.TipoProductoEntity;
 
-public interface TipoproductosService {
-
-	public List<TipoProductoEntity> listar();
-	
+public interface TipoproductoService {
+	TipoProductoEntity crear(TipoProductoEntity obj);
+	List<TipoProductoEntity> listar();
 }

@@ -23,7 +23,7 @@ public class ProductoEntity {
 	@ManyToOne
 	@JoinColumn(name = "tipo_id")
 	private TipoProductoEntity tipo;
-	
+	private String nombre;
 	private String descripcion;
 	private Double precio;
 	@Column(name = "stock_min")

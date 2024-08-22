@@ -7,9 +7,7 @@ import edu.cibertec.proyecto.entity.ProveedorEntity;
 import java.util.List;
 
 @Repository
-public interface ProveedoresRepository extends JpaRepository<ProveedorEntity, Integer>{
-
-	
+public interface ProveedorRepository extends JpaRepository<ProveedorEntity, Integer>{
 	List<ProveedorEntity> findByEstado(int estado);
-	
+	boolean existsByRucdni(String dni);
 }
