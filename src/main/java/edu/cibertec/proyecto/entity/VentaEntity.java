@@ -16,7 +16,7 @@ public class VentaEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cliente_id")
+	@Column(name = "venta_id")
 	private int idVentas;
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")

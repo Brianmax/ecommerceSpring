@@ -1,6 +1,7 @@
 package edu.cibertec.proyecto.service.impl;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,28 +15,28 @@ import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ClientesServiceImpl implements ClientesService {
-	@Autowired
-	ClientesRepository rc;
+	ClientesRepository clientesRepository;
 	
 	@Override
-	public Page<ClienteEntity> listar(Pageable pageable) {
-		return rc.findByEstado(1, pageable);
+	public Page<ClienteEntity> listar(int page, int size) {
+		return clientesRepository.findAll(Pageable.ofSize(size).withPage(page));
 	}
 
 	@Override
 	public ClienteEntity buscarCliente(int codigo) {
-		Optional<ClienteEntity> cliente = rc.findById(codigo);
+		Optional<ClienteEntity> cliente = clientesRepository.findById(codigo);
         return cliente.orElse(null);
     }
 
 	@Override
 	public boolean eliminarCliente(int id) {
-		Optional<ClienteEntity> cliente = rc.findById(id);
+		Optional<ClienteEntity> cliente = clientesRepository.findById(id);
 		if (cliente.isPresent()) {
 			ClienteEntity cli = cliente.get();
-			cli.setEstado(0);
-			rc.save(cli);
+			cli.setEstado(true);
+			clientesRepository.save(cli);
 			return true;
 		}
 		return false;
@@ -43,7 +44,7 @@ public class ClientesServiceImpl implements ClientesService {
 
 	@Override
 	public boolean modificarCliente(ClienteEntity obj) {
-		Optional<ClienteEntity> cliente = rc.findById(obj.getIdcliente());
+		Optional<ClienteEntity> cliente = clientesRepository.findById(obj.getIdcliente());
 		if (cliente.isPresent()) {
 			ClienteEntity cli = cliente.get();
 			cli.setIdcliente(obj.getIdcliente());
@@ -51,8 +52,8 @@ public class ClientesServiceImpl implements ClientesService {
 			cli.setDireccion(obj.getDireccion());
 			cli.setRazonsocial(obj.getRazonsocial());
 			cli.setRucdni(obj.getRucdni());
-			cli.setEstado(1);
-			rc.save(cli);
+			cli.setEstado(true);
+			clientesRepository.save(cli);
 			return true;
 		}
 		return false;
@@ -61,11 +62,11 @@ public class ClientesServiceImpl implements ClientesService {
 	@Override
 	public ClienteEntity crearCliente(ClienteEntity obj) {
 		String rucdni = obj.getRucdni();
-		if (rc.existsByRucdni(rucdni)) {
+		if (clientesRepository.existsByRucdni(rucdni)) {
 			return null;
 		}
-		obj.setEstado(1);
-		return rc.save(obj);
+		obj.setEstado(true);
+		return clientesRepository.save(obj);
 	}
 
 }

@@ -3,6 +3,7 @@ package edu.cibertec.proyecto.service.impl;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import edu.cibertec.proyecto.service.ProveedorService;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProveedorServiceImpl implements ProveedorService {
 	private ProveedorRepository proveedorRepository;
 	

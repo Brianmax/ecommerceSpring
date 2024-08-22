@@ -16,7 +16,7 @@ import edu.cibertec.proyecto.service.UsuariosService;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-	@Autowired
+	/*@Autowired
     UsuariosService usuariosService;
 	
 	@GetMapping("autentificar")
@@ -36,6 +36,6 @@ public class LoginController {
 		}
 		
 		return "redirect:/listar_Ctrl_Reposicion";
-	}
+	}*/
 	
 }

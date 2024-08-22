@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ProveedorRepository extends JpaRepository<ProveedorEntity, Integer>{
-	List<ProveedorEntity> findByEstado(int estado);
 	boolean existsByRucdni(String dni);
 }
