@@ -1,5 +1,6 @@
 package edu.cibertec.proyecto.controller;
 
+import edu.cibertec.proyecto.aggregate.request.ClienteRequest;
 import edu.cibertec.proyecto.entity.ClienteEntity;
 import edu.cibertec.proyecto.service.ClientesService;
 import org.apache.coyote.Response;
@@ -8,13 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/clientes")
+@RequestMapping("/api/v1/cliente")
 public class ClienteController {
     @Autowired
     private ClientesService clientesService;
 
     @PostMapping("/crear")
-    public ResponseEntity<ClienteEntity> crearCliente(@RequestBody ClienteEntity obj) {
+    public ResponseEntity<ClienteEntity> crearCliente(@RequestBody ClienteRequest obj) {
         ClienteEntity cliente = clientesService.crearCliente(obj);
         if (cliente == null) {
             return ResponseEntity.badRequest().build();
@@ -45,9 +46,9 @@ public class ClienteController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/modificar")
-    public ResponseEntity<?> modificarCliente(@RequestBody ClienteEntity obj) {
-        if (!clientesService.modificarCliente(obj)) {
+    @PutMapping("/modificar/{idCliente}")
+    public ResponseEntity<?> modificarCliente(@RequestBody ClienteRequest obj, @PathVariable int idCliente) {
+        if (!clientesService.modificarCliente(obj, idCliente)) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok().build();

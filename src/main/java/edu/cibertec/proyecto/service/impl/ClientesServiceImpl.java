@@ -1,6 +1,7 @@
 package edu.cibertec.proyecto.service.impl;
 
 
+import edu.cibertec.proyecto.aggregate.request.ClienteRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,15 +44,14 @@ public class ClientesServiceImpl implements ClientesService {
 	}
 
 	@Override
-	public boolean modificarCliente(ClienteEntity obj) {
-		Optional<ClienteEntity> cliente = clientesRepository.findById(obj.getIdcliente());
+	public boolean modificarCliente(ClienteRequest obj, int idCliente) {
+		Optional<ClienteEntity> cliente = clientesRepository.findById(idCliente);
 		if (cliente.isPresent()) {
 			ClienteEntity cli = cliente.get();
-			cli.setIdcliente(obj.getIdcliente());
 			cli.setCelular(obj.getCelular());
 			cli.setDireccion(obj.getDireccion());
-			cli.setRazonsocial(obj.getRazonsocial());
-			cli.setRucdni(obj.getRucdni());
+			cli.setRazonsocial(obj.getRazonSocial());
+			cli.setRucdni(obj.getDni());
 			cli.setEstado(true);
 			clientesRepository.save(cli);
 			return true;
@@ -60,13 +60,18 @@ public class ClientesServiceImpl implements ClientesService {
 	}
 
 	@Override
-	public ClienteEntity crearCliente(ClienteEntity obj) {
-		String rucdni = obj.getRucdni();
+	public ClienteEntity crearCliente(ClienteRequest obj) {
+		String rucdni = obj.getDni();
 		if (clientesRepository.existsByRucdni(rucdni)) {
 			return null;
 		}
-		obj.setEstado(true);
-		return clientesRepository.save(obj);
+		ClienteEntity cliente = new ClienteEntity();
+		cliente.setRucdni(obj.getDni());
+		cliente.setRazonsocial(obj.getRazonSocial());
+		cliente.setDireccion(obj.getDireccion());
+		cliente.setCelular(obj.getCelular());
+		cliente.setEstado(true);
+		return clientesRepository.save(cliente);
 	}
 
 }
