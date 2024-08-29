@@ -1,5 +1,6 @@
 package edu.cibertec.proyecto.controller;
 
+import edu.cibertec.proyecto.aggregate.request.ProductoRequest;
 import edu.cibertec.proyecto.entity.ProductoEntity;
 import edu.cibertec.proyecto.service.ProductosService;
 import lombok.AllArgsConstructor;
@@ -11,11 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/producto")
 @AllArgsConstructor
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
 public class ProductoController {
     private ProductosService productosService;
 
     @PostMapping("/crear")
-    public ResponseEntity<?> crearProducto(@RequestBody ProductoEntity producto) {
+    public ResponseEntity<?> crearProducto(@RequestBody ProductoRequest producto) {
         ProductoEntity ans = productosService.crearProducto(producto);
         if (ans == null) {
             return ResponseEntity.badRequest().build();

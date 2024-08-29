@@ -18,8 +18,8 @@ public class ProveedorServiceImpl implements ProveedorService {
 	private ProveedorRepository proveedorRepository;
 	
 	@Override
-	public List<ProveedorEntity> listar(int page, int size) {
-		return proveedorRepository.findAll(PageRequest.of(page, size)).getContent();
+	public List<ProveedorEntity> listar() {
+		return proveedorRepository.findAll();
 	}
 
 	@Override

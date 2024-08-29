@@ -3,6 +3,7 @@ package edu.cibertec.proyecto.service;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import edu.cibertec.proyecto.aggregate.request.ProductoRequest;
 import edu.cibertec.proyecto.entity.ProductoEntity;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -13,6 +14,6 @@ public interface ProductosService {
 	ProductoEntity buscarProducto(int idProducto);
 	boolean eliminarProducto(int idProduct);
 	ProductoEntity modificarProducto(ProductoEntity obj, int id);
-	ProductoEntity crearProducto(ProductoEntity obj);
+	ProductoEntity crearProducto(ProductoRequest productoRequest);
 	JasperPrint exportReport(String report)throws FileNotFoundException, JRException;
 }

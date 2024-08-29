@@ -2,13 +2,7 @@ package edu.cibertec.proyecto.entity;
 
 import java.util.Date;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +17,9 @@ import lombok.Setter;
 @Table(name = "operaciones")
 public class OperacionEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int operaciones;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "operacion_id")
+	private int idOperacion;
 	private String proceso;
 	private int tipo;
 	@ManyToOne
@@ -38,7 +33,7 @@ public class OperacionEntity {
 
 	public OperacionEntity(String proceso, int tipo, ProductoEntity producto, int cantidad,
 						   Double precio, Date fechacpa, int estado) {
-		this.operaciones = operaciones;
+		this.idOperacion = idOperacion;
 		this.proceso = proceso;
 		this.tipo = tipo;
 		this.producto = producto;

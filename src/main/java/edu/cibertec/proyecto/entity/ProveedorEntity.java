@@ -11,7 +11,7 @@ import lombok.*;
 @Table(name="proveedores")
 public class ProveedorEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "proveedor_id")
 	private int idproveedor;
 	private String rucdni;

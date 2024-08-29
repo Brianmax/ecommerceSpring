@@ -3,25 +3,21 @@ package edu.cibertec.proyecto.entity;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_productos")
-
+@Table(name = "productos")
 public class ProductoEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "producto_id")
 	private int idprod;
 	@ManyToOne
-	@JoinColumn(name = "tipo_id")
+	@JoinColumn(name = "tipo")
 	private TipoProductoEntity tipo;
 	private String nombre;
 	private String descripcion;

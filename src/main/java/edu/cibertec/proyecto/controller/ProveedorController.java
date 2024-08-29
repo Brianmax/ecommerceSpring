@@ -24,8 +24,8 @@ public class ProveedorController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listarProveedores(@RequestParam int page, @RequestParam int size) {
-        List<ProveedorEntity> proveedores = proveedorService.listar(page, size);
+    public ResponseEntity<?> listarProveedores() {
+        List<ProveedorEntity> proveedores = proveedorService.listar();
         if (proveedores.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

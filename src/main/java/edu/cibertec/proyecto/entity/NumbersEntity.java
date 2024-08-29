@@ -14,7 +14,8 @@ import lombok.Setter;
 @Table(name="numbers")
 public class NumbersEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "number_id")
 	private int idnumber;
 	private String prefij;
 	private int numeracion;

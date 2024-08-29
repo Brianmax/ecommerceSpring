@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import edu.cibertec.proyecto.aggregate.request.ProductoRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -63,8 +65,14 @@ public class ProductosServiceImpl implements ProductosService {
 	}
 
 	@Override
-	public ProductoEntity crearProducto(ProductoEntity producto) {
-		Optional<ProductoEntity> cap = productosRepository.findById(producto.getIdprod());
+	public ProductoEntity crearProducto(ProductoRequest productoRequest) {
+		ProductoEntity producto = new ProductoEntity();
+		producto.setNombre(productoRequest.getNombre());
+		producto.setDescripcion(productoRequest.getDescripcion());
+		producto.setPrecio(productoRequest.getPrecio());
+		producto.setStockMin(productoRequest.getStockMin());
+		producto.setStockMax(productoRequest.getStockMax());
+		Optional<ProductoEntity> cap = productosRepository.findByNombre(productoRequest.getNombre());
 		if (cap.isPresent()) {
 			return null;
 		}

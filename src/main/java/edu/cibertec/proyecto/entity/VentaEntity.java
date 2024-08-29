@@ -15,11 +15,11 @@ import lombok.*;
 public class VentaEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "venta_id")
 	private int idVentas;
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
+	@JoinColumn(name = "cliente")
 	private ClienteEntity cliente;
 	private Double precio;
 	private Date fecha;
