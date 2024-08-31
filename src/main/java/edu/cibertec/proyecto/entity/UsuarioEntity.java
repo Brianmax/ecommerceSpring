@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "usuarios")
 public class UsuarioEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
     private int idusuario;
     private String nombre;

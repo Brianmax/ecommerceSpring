@@ -1,6 +1,7 @@
 package edu.cibertec.proyecto.controller;
 
 import edu.cibertec.proyecto.aggregate.request.ProductoRequest;
+import edu.cibertec.proyecto.aggregate.request.ProductoUpdateRequest;
 import edu.cibertec.proyecto.entity.ProductoEntity;
 import edu.cibertec.proyecto.service.ProductosService;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,14 @@ public class ProductoController {
         }
         return ResponseEntity.ok(ans);
     }
-
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<?> modificarProducto(@RequestBody ProductoUpdateRequest producto, @PathVariable int id) {
+        ProductoEntity ans = productosService.modificarProducto(producto, id);
+        if (ans == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(ans);
+    }
     @GetMapping("/listar")
     public ResponseEntity<?> listarProductos(@RequestParam int page, @RequestParam int size) {
         List<ProductoEntity> productos = productosService.listar(page, size);

@@ -13,13 +13,12 @@ import lombok.*;
 @Table(name = "productos")
 public class ProductoEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "producto_id")
 	private int idprod;
 	@ManyToOne
 	@JoinColumn(name = "tipo")
 	private TipoProductoEntity tipo;
-	private String nombre;
 	private String descripcion;
 	private Double precio;
 	@Column(name = "stock_min")
@@ -27,11 +26,11 @@ public class ProductoEntity {
 	@Column(name = "stock_max")
 	private int stockMax;
 	@ManyToOne
-	@JoinColumn(name = "proveedor_id")
+	@JoinColumn(name = "proveedor")
 	private ProveedorEntity proveedor;
 	private boolean estado;
 	
-	@OneToMany(mappedBy = "producto")
+	/*@OneToMany(mappedBy = "producto")
 	List<OperacionEntity> productos;
 
 	public int getStock() {
@@ -47,5 +46,5 @@ public class ProductoEntity {
 			men = false;
 		}
 		return men;
-	}
+	}*/
 }

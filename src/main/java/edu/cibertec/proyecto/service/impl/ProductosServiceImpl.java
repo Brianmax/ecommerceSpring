@@ -8,6 +8,11 @@ import java.util.Map;
 import java.util.Optional;
 
 import edu.cibertec.proyecto.aggregate.request.ProductoRequest;
+import edu.cibertec.proyecto.aggregate.request.ProductoUpdateRequest;
+import edu.cibertec.proyecto.entity.ProveedorEntity;
+import edu.cibertec.proyecto.entity.TipoProductoEntity;
+import edu.cibertec.proyecto.repository.ProveedorRepository;
+import edu.cibertec.proyecto.repository.TipoProductoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,6 +31,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @AllArgsConstructor
 public class ProductosServiceImpl implements ProductosService {
 	private ProductosRepository productosRepository;
+	private ProveedorRepository proveedorRepository;
+	private TipoProductoRepository tipoProductoRepository;
 	
 	@Override
 	public List<ProductoEntity> listar(int page, int size) {
@@ -51,13 +58,22 @@ public class ProductosServiceImpl implements ProductosService {
 	}
 
 	@Override
-	public ProductoEntity modificarProducto(ProductoEntity obj, int id) {
+	public ProductoEntity modificarProducto(ProductoUpdateRequest obj, int id) {
 		Optional<ProductoEntity> cap = productosRepository.findById(id);
+		ProveedorEntity prov = proveedorRepository.findByRazonsocial(obj.getProveedor()).orElse(null);
+		TipoProductoEntity tip = tipoProductoRepository.findByDescripcion(obj.getTipo()).orElse(null);
+		if (prov == null || tip == null) {
+			return null;
+		}
 		if (cap.isPresent()) {
+
 			ProductoEntity cap2 = cap.get();
 			cap2.setPrecio(obj.getPrecio());
-			cap2.setEstado(obj.isEstado());
 			cap2.setDescripcion(obj.getDescripcion());
+			cap2.setStockMax(obj.getStockMax());
+			cap2.setStockMin(obj.getStockMin());
+			cap2.setProveedor(prov);
+			cap2.setTipo(tip);
 			productosRepository.save(cap2);
 			return cap2;
 		}
@@ -67,16 +83,19 @@ public class ProductosServiceImpl implements ProductosService {
 	@Override
 	public ProductoEntity crearProducto(ProductoRequest productoRequest) {
 		ProductoEntity producto = new ProductoEntity();
-		producto.setNombre(productoRequest.getNombre());
 		producto.setDescripcion(productoRequest.getDescripcion());
 		producto.setPrecio(productoRequest.getPrecio());
 		producto.setStockMin(productoRequest.getStockMin());
 		producto.setStockMax(productoRequest.getStockMax());
-		Optional<ProductoEntity> cap = productosRepository.findByNombre(productoRequest.getNombre());
-		if (cap.isPresent()) {
+		//Optional<ProductoEntity> cap = productosRepository.findByNombre(productoRequest.getNombre());
+		ProveedorEntity prov = proveedorRepository.findByRazonsocial(productoRequest.getProveedor()).orElse(null);
+		TipoProductoEntity tip = tipoProductoRepository.findByDescripcion(productoRequest.getTipo()).orElse(null);
+		if (prov == null || tip == null) {
 			return null;
 		}
 		else {
+			producto.setProveedor(prov);
+			producto.setTipo(tip);
 			return productosRepository.save(producto);
 		}
 	}

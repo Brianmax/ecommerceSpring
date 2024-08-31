@@ -13,6 +13,7 @@ import edu.cibertec.proyecto.repository.ClientesRepository;
 import edu.cibertec.proyecto.service.ClientesService;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,8 @@ public class ClientesServiceImpl implements ClientesService {
 	ClientesRepository clientesRepository;
 	
 	@Override
-	public Page<ClienteEntity> listar(int page, int size) {
-		return clientesRepository.findAll(Pageable.ofSize(size).withPage(page));
+	public List<ClienteEntity> listar() {
+		return clientesRepository.findAll();
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class ClientesServiceImpl implements ClientesService {
 			cli.setCelular(obj.getCelular());
 			cli.setDireccion(obj.getDireccion());
 			cli.setRazonsocial(obj.getRazonSocial());
-			cli.setRucdni(obj.getDni());
+			//cli.setRucdni(obj.getDni());
 			cli.setEstado(true);
 			clientesRepository.save(cli);
 			return true;

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/cliente")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ClienteController {
     @Autowired
     private ClientesService clientesService;
@@ -24,9 +25,8 @@ public class ClienteController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listarClientes(@RequestParam(name = "page", defaultValue = "0") int page,
-                                            @RequestParam(name = "size", defaultValue = "10") int size) {
-        return ResponseEntity.ok(clientesService.listar(page, size));
+    public ResponseEntity<?> listarClientes() {
+        return ResponseEntity.ok(clientesService.listar());
     }
 
     @GetMapping("/buscar/{id}")

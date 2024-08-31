@@ -15,9 +15,8 @@ import lombok.Setter;
 @Table(name = "tipo_productos")
 public class TipoProductoEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "tipo_id")
 	private int idtipo;
-	private String nombre;
 	private String descripcion;
 }

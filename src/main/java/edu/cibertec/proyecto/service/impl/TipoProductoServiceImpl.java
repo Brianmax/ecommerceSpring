@@ -18,10 +18,6 @@ public class TipoProductoServiceImpl implements TipoproductoService {
 
 	@Override
 	public TipoProductoEntity crear(TipoProductoEntity obj) {
-		if (tipoProductoRepository.existsByNombre(obj.getNombre()))
-		{
-			return null;
-		}
 		return rt.save(obj);
 	}
 

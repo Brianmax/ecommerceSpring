@@ -16,7 +16,7 @@ import lombok.Setter;
 public class ClienteEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cliente_id")
 	private int idcliente;
 	@NotEmpty

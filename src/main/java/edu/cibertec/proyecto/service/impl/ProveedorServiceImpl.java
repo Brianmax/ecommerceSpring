@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import edu.cibertec.proyecto.service.ProveedorService;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProveedorServiceImpl implements ProveedorService {
+	@Autowired
 	private ProveedorRepository proveedorRepository;
 	
 	@Override

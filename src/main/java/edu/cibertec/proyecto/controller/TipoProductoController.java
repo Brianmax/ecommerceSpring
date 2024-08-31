@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/tipoproducto")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @AllArgsConstructor
 public class TipoProductoController {
     private TipoproductoService tipoproductoService;
