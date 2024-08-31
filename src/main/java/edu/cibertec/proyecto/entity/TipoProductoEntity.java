@@ -9,27 +9,14 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "tb_tipoproductos")
+@Table(name = "tipo_productos")
 public class TipoProductoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tipo_id")
 	private int idtipo;
 	private String descripcion;
-
-	public int getIdtipo() {
-		return idtipo;
-	}
-
-	public void setIdtipo(int idtipo) {
-		this.idtipo = idtipo;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 }

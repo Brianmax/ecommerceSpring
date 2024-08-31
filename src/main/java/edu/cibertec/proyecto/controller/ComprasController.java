@@ -28,7 +28,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 @Controller
 @RequestMapping("/")
 public class ComprasController {
-	List<ProductosModelo> pastilla = new ArrayList<ProductosModelo>();
+/*	List<ProductosModelo> pastilla = new ArrayList<ProductosModelo>();
 	
 	@Autowired
 	private ProductosService productosService;
@@ -36,25 +36,19 @@ public class ComprasController {
 	private OperacionesService operacionesService;
 
 	@GetMapping("listar_Ctrl_Reposicion")
-	public ModelAndView listarCtrlReposicion() {
-		ModelAndView mav = new ModelAndView("listarCtrlReposiciones");
-		List<ProductoEntity> paquete = productosService.listar();
-		mav.addObject("paqueteP",paquete);
-		return mav;
+	public List<ProductoEntity> listarCtrlReposicion() {
+		return productosService.listar();
 	}
 	
-	@GetMapping("reponer_producto")
-	public ModelAndView obtenerProducto(@RequestParam(name = "idpro")int idprod) {
-		ModelAndView mav=new ModelAndView("reponerProducto");
-		mav.addObject("productoP",productosService.buscarProducto(idprod));
-		return mav;
-	
+	@GetMapping("obtener_producto")
+	public ProductoEntity obtenerProducto(@RequestParam(name = "idpro")int idprod) {
+		return productosService.buscarProducto(idprod);
 	}
 	
 	@PostMapping("reponerproducto/actualizar")
 	public String reponerProducto(@ModelAttribute(name = "producto") ProductoEntity obj ) {
 	    Date date = new Date(System.currentTimeMillis());
-		OperacionEntity opr = new OperacionEntity("REPO",1,obj,obj.getStock_min(),obj.getPrecio(),date,1);
+		OperacionEntity opr = new OperacionEntity("REPO",1,obj,obj.getStockMin(),obj.getPrecio(),date,1);
 		operacionesService.crearOperaciones(opr);
 		return "redirect:/listar_Ctrl_Reposicion";
 	}
@@ -113,6 +107,6 @@ public class ComprasController {
 		outputStream.close();
 	}
 	
-	
+	*/
 	
 }

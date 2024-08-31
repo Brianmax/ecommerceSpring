@@ -11,4 +11,5 @@ import edu.cibertec.proyecto.entity.ClienteEntity;
 public interface ClientesRepository extends JpaRepository<ClienteEntity,Integer>{
 
 	Page<ClienteEntity> findByEstado(int estado, Pageable pageable);
+	boolean existsByRucdni(String rucdni);
 }

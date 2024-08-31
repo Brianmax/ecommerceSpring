@@ -1,0 +1,16 @@
+package edu.cibertec.proyecto.aggregate.request;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ProductoUpdateRequest {
+    private String nombre;
+    private String descripcion;
+    private double precio;
+    private int stockMin;
+    private int stockMax;
+    private String proveedor;
+    private String tipo;
+}

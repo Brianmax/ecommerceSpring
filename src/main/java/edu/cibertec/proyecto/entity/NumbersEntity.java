@@ -11,10 +11,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="tb_number")
+@Table(name="numbers")
 public class NumbersEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "number_id")
 	private int idnumber;
 	private String prefij;
 	private int numeracion;

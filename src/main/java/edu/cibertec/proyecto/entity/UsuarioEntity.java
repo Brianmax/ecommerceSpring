@@ -11,14 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_usuarios")
+@Table(name = "usuarios")
 public class UsuarioEntity {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private int idusuario;
-private String nombre;
-private String usuario;
-private String clave;
-private int estado;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "usuario_id")
+    private int idusuario;
+    private String nombre;
+    private String usuario;
+    private String password;
+    private boolean estado;
 }
