@@ -34,8 +34,8 @@ public class ProductoController {
         return ResponseEntity.ok(ans);
     }
     @GetMapping("/listar")
-    public ResponseEntity<?> listarProductos(@RequestParam int page, @RequestParam int size) {
-        List<ProductoEntity> productos = productosService.listar(page, size);
+    public ResponseEntity<?> listarProductos() {
+        List<ProductoEntity> productos = productosService.listar();
         if (productos.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

@@ -11,7 +11,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 public interface ProductosService {
 
-	List<ProductoEntity> listar(int page, int size);
+	List<ProductoEntity> listar();
 	ProductoEntity buscarProducto(int idProducto);
 	boolean eliminarProducto(int idProduct);
 	ProductoEntity modificarProducto(ProductoUpdateRequest obj, int id);

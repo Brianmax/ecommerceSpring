@@ -35,9 +35,8 @@ public class ProductosServiceImpl implements ProductosService {
 	private TipoProductoRepository tipoProductoRepository;
 	
 	@Override
-	public List<ProductoEntity> listar(int page, int size) {
-		Pageable pageable = Pageable.ofSize(size).withPage(page);
-		return productosRepository.findByEstado(true, pageable);
+	public List<ProductoEntity> listar() {
+		return productosRepository.findByEstado(true);
 	}
 
 	@Override
@@ -94,6 +93,7 @@ public class ProductosServiceImpl implements ProductosService {
 			return null;
 		}
 		else {
+			producto.setEstado(true);
 			producto.setProveedor(prov);
 			producto.setTipo(tip);
 			return productosRepository.save(producto);
